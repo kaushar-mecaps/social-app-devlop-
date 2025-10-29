@@ -1,17 +1,17 @@
 package com.kusr.socialApp.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 //-------------------------------------------------------------------------------------------------------------
-
 @Entity              //Table create ,Create row & column
 @Table(name="user")
 public class User {
+
     @Id       //(spesify the primary key)
     @GeneratedValue(strategy = GenerationType.IDENTITY)    // (Automatically generate ID)
-
     @Column(name="user_id")
     private long userId;
 
@@ -32,10 +32,7 @@ public class User {
     private List<Post> post = new ArrayList<>();
 
     //---------------------------------------------------------------------------------------------------------------
-
-
-
-//                                      ******* Contractor ***********
+//                                      ******* Constractor ***********
 
     public User() {
 
@@ -48,10 +45,6 @@ public class User {
     }
 
 //-------------------------------------------------------------------------------------------------------------
-
-
-
-
 //                                    ********** Getter and Setter **********
 
     public long getUserId() {

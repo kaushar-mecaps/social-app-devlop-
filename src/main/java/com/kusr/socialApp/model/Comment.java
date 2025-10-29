@@ -1,13 +1,16 @@
 package com.kusr.socialApp.model;
+
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
-@Entity
+//----------------------------------------------------------------------------------------------------------------------
+@Entity     //Table create ,Create row & column
 @Table(name="comment")
 public class Comment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id     //(spesify the primary key)
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)     // (Automatically generate ID)
 
     @Column(name="comment_id")
     private long commentId;
@@ -24,9 +27,11 @@ public class Comment {
     @Column(name="commented_at")
     private LocalDate commentedAt;
 
+//----------------------------------------------------------------------------------------------------------------------
+//                                             ******* Constractor ***********
+
     public Comment() {
     }
-
 
     public Comment(String commentString, Post postId, User author, LocalDate commentedAt) {
         this.commentString = commentString;
@@ -34,6 +39,9 @@ public class Comment {
         this.author = author;
         this.commentedAt = commentedAt;
     }
+
+//----------------------------------------------------------------------------------------------------------------------
+//                                             ********** Getter and Setter **********
 
     public long getCommentId() {
         return commentId;
@@ -75,6 +83,8 @@ public class Comment {
         this.commentedAt = commentedAt;
     }
 
+//----------------------------------------------------------------------------------------------------------------------
+//                                 *************( To String )******************
     @Override
     public String toString() {
         return "Comment{" +
@@ -86,5 +96,6 @@ public class Comment {
                 '}';
     }
 }
+//---------------------------------------------------------------------------------------------------------------------
 
 

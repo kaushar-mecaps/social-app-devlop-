@@ -1,17 +1,17 @@
 package com.kusr.socialApp.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+//----------------------------------------------------------------------------------------------------------------------
+@Entity               //Table create ,Create row & column
 @Table(name="post")
 public class Post {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id  //(spesify the primary key)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)       // (Automatically generate ID)
     @Column(name="post_id")
     private long postId;
 
@@ -25,13 +25,14 @@ public class Post {
     @JoinColumn(name="user_id")
     private User user;
 
-//    ___________________________________________________________________________________________________________
+//______________________________________________________________________________________________________________________
 //    Delete PostId Throw All CommentId Delete
+
     @OneToMany(mappedBy = "postId",orphanRemoval = true, cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
 
-//    ______________________________________________________________________________________________________________
-
+//______________________________________________________________________________________________________________________
+//                                         *******( Constractor )***********
 
     public Post() {
 
@@ -42,6 +43,9 @@ public class Post {
         this.postedAt = postedAt;
         this.user = user;
     }
+
+//----------------------------------------------------------------------------------------------------------------------
+//                                           ********** Getter and Setter **********
 
     public long getPostId() {
         return postId;
@@ -75,8 +79,8 @@ public class Post {
         this.user = user;
     }
 
-//    ------------------------------------------------------------------------------------------------------------
-
+//----------------------------------------------------------------------------------------------------------------------
+//                                        *************( To String )******************
     @Override
     public String toString() {
         return "Post{" +
@@ -87,3 +91,4 @@ public class Post {
                 '}';
     }
 }
+//----------------------------------------------------------------------------------------------------------------------
