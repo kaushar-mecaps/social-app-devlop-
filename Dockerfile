@@ -1,8 +1,12 @@
-# Step 1: Java base image use karo
+# Step 1: Build the project using Maven
+FROM maven:3.9.6-eclipse-temurin-17 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Step 2: Run the jar file
 FROM openjdk:17-jdk-slim
-
-# Step 2: Jar file copy karo
-COPY target/*.jar app.jar
-
-# Step 3: Run the jar file
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
