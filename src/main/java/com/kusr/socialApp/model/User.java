@@ -7,7 +7,7 @@ import java.util.List;
 
 //-------------------------------------------------------------------------------------------------------------
 @Entity              //Table create ,Create row & column
-@Table(name="user")
+@Table(name="users")
 public class User {
 
     @Id       //(spesify the primary key)
